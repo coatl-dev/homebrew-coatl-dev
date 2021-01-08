@@ -4,8 +4,6 @@ class JythonAT271 < Formula
   url "https://search.maven.org/remotecontent?filepath=org/python/jython-installer/2.7.1/jython-installer-2.7.1.jar"
   sha256 "6e58dad0b8565b95c6fb14b4bfbf570523d1c5290244cfb33822789fa53b1d25"
 
-  conflicts_with "jython"
-
   def install
     system "java", "-jar", cached_download, "-s", "-d", libexec
     bin.install_symlink libexec/"bin/jython"
