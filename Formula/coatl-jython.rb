@@ -1,4 +1,4 @@
-class Jython < Formula
+class CoatlJython < Formula
   desc "Python implementation written in Java (successor to JPython)"
   homepage "https://www.jython.org/"
   url "https://search.maven.org/remotecontent?filepath=org/python/jython-installer/2.7.2/jython-installer-2.7.2.jar"
@@ -11,13 +11,6 @@ class Jython < Formula
   end
 
   # This isn't accidental; there is actually a compile process here.
-  bottle do
-    cellar :any_skip_relocation
-    sha256 "ecac33d533e405e4bd45cdf7023cd334fa655e17446cbfa5231dbf1e580166c5" => :catalina
-    sha256 "3bd7cbb55035525c113c7608b9e18215b1a214c0f21e45203c900029765ba09f" => :mojave
-    sha256 "644da593101c796e9b39e10ad7cd65f96e8e0d9ccf19109c8337a1f262ef005a" => :high_sierra
-  end
-
   def install
     system "java", "-jar", cached_download, "-s", "-d", libexec
     bin.install_symlink libexec/"bin/jython"
