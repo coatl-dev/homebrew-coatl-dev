@@ -5,11 +5,6 @@ class JythonAT272 < Formula
   sha256 "36e40609567ce020a1de0aaffe45e0b68571c278c14116f52e58cc652fb71552"
   license "PSF-2.0"
 
-  livecheck do
-    url "https://github.com/jython/jython.git"
-    regex(/^v?(\d+(?:\.\d+)+)$/i)
-  end
-
   # This isn't accidental; there is actually a compile process here.
   def install
     system "java", "-jar", cached_download, "-s", "-d", libexec
