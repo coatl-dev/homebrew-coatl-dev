@@ -3,6 +3,7 @@ class JythonAT253 < Formula
   homepage "https://www.jython.org/"
   url "https://search.maven.org/remotecontent?filepath=org/python/jython-installer/2.5.3/jython-installer-2.5.3.jar"
   sha256 "05405966cdfa57abc8e705dd6aab92b8240097ce709fb916c8a0dbcaa491f99e"
+  license :cannot_represent
 
   # This isn't accidental; there is actually a compile process here.
   def install
