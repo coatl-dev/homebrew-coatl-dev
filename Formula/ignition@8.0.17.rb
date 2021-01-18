@@ -3,7 +3,7 @@ class IgnitionAT8017 < Formula
   homepage "https://inductiveatumation.com/"
   url "https://files.inductiveautomation.com/release/ia/8.0.17/20201112-1050/Ignition-osx-8.0.17.zip", using: :curl, referer: "https://inductiveautomation.com/"
   sha256 "e873f8cc0a7f1f7d92379a212f71c15646712bede748c6444b47fe2a21e31447"
-  license "https://inductiveautomation.com/ignition/license"
+  license :cannot_represent
 
   def install
     libexec.install Dir["*"]
