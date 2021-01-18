@@ -2,7 +2,6 @@ class IgnitionAT7917 < Formula
   desc "Unlimited Platform for SCADA and so much more"
   homepage "https://inductiveatumation.com/"
   url "https://files.inductiveautomation.com/release/ia/build7.9.17/20210105-1428/zip-installers/Ignition-osx-7.9.17.zip", using: :curl, referer: "https://inductiveautomation.com/"
-  version "7.9.17"
   sha256 "b6305e68a5ca8d1bbe500a8f39f4a769a95056852a9bfb86ee8aa099161664ae"
   license :cannot_represent
 
