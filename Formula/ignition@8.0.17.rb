@@ -6,6 +6,8 @@ class IgnitionAT8017 < Formula
   sha256 "e873f8cc0a7f1f7d92379a212f71c15646712bede748c6444b47fe2a21e31447"
   license :cannot_represent
 
+  bottle :unneeded
+
   def install
     libexec.install Dir["*"]
     # Make files executable and add symlinks
