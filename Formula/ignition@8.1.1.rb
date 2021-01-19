@@ -31,7 +31,7 @@ class IgnitionAT811 < Formula
   end
 
   test do
-    output = shell_output("#{bin}/ignition-#{version} status")
-    assert_match "Ignition-Gateway (not installed) is not running.", output
+    output = shell_output("#{bin}/ignition-#{version} status 2>&1", 1)
+    assert_match "Ignition-Gateway", output
   end
 end

@@ -31,6 +31,7 @@ class IgnitionAT8017 < Formula
   end
 
   test do
-    assert_match "Ignition", shell_output("#{bin}/ignition-#{version} status")
+    output = shell_output("#{bin}/ignition-#{version} status 2>&1", 1)
+    assert_match "Ignition-Gateway", output
   end
 end
