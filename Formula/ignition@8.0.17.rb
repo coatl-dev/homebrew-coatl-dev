@@ -1,6 +1,6 @@
 class IgnitionAT8017 < Formula
   desc "Unlimited Platform for SCADA and so much more"
-  homepage "https://inductiveatumation.com/"
+  homepage "https://inductiveautomation.com/"
   url "https://files.inductiveautomation.com/release/ia/8.0.17/20201112-1050/Ignition-osx-8.0.17.zip",
       referer: "https://inductiveautomation.com/"
   sha256 "e873f8cc0a7f1f7d92379a212f71c15646712bede748c6444b47fe2a21e31447"
@@ -31,6 +31,6 @@ class IgnitionAT8017 < Formula
   end
 
   test do
-    assert_match "Ignition-Gateway", shell_output("#{bin}/ignition-#{version} status")
+    assert_match "Ignition-Gateway (not installed) is not running.", shell_output("#{bin}/ignition-#{version} status")
   end
 end
