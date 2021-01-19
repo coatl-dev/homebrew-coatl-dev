@@ -1,3 +1,5 @@
+![brew test-bot](https://github.com/coatl-dev/homebrew-coatl-dev/workflows/brew%20test-bot/badge.svg)
+
 # coatl.dev Homebrew Tap
 
 ## How do I install these formulae?
