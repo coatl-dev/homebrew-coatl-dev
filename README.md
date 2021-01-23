@@ -1,4 +1,5 @@
 [![time tracker](https://wakatime.com/badge/github/coatl-dev/homebrew-coatl-dev.svg)](https://wakatime.com/badge/github/coatl-dev/homebrew-coatl-dev)
+[![Join us on GitHub discussions](https://img.shields.io/badge/github-discussions-informational)](https://github.com/coatl-dev/discussions/discussions)
 ![brew test-bot](https://github.com/coatl-dev/homebrew-coatl-dev/workflows/brew%20test-bot/badge.svg)
 
 # coatl.dev Homebrew Tap
