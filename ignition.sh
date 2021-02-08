@@ -43,7 +43,7 @@ function update_formulae {
       | sed -E "s/\\{shasum\\}/$sha256/g" \
       > "$filename.rb" ; \
     fi
-  done < "$CURR_DIR/ignition.txt"
+  done < "$CURR_DIR/ignition-releases.csv"
 }
 
 update_formulae
