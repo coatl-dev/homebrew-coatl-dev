@@ -46,8 +46,6 @@ function update_formulae {
   done < "$CURR_DIR/ignition.txt"
 }
 
-echo "Beginning"
-
 update_formulae
 
 cd -
