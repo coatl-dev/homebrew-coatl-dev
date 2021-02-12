@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -eu
+set -euo pipefail;
 
 CURR_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -37,8 +37,7 @@ function update_formulae {
 
       name+="${version//./}"
 
-      cat "$template_file" \
-      | sed -E "s/\\{formula_name\\}/$name/g" \
+      < "$template_file" sed -E "s/\\{formula_name\\}/$name/g" \
       | sed -E "s|\\{formula_url\\}|$partial_url|g" \
       | sed -E "s/\\{shasum\\}/$sha256/g" \
       > "$filename.rb" ; \
