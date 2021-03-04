@@ -15,10 +15,10 @@ class IgnitionEdgeAT813 < Formula
       chmod "u=wrx,go=rx", "#{libexec}/#{cmd}"
     end
     # Create symlink for ignition.sh
-    bin.install_symlink "#{libexec}/ignition.sh" => "ignition-#{version}"
+    bin.install_symlink "#{libexec}/ignition.sh" => "ignition-edge-#{version}"
     # Update com.inductiveautomation.ignition.plist
     inreplace "#{libexec}/com.inductiveautomation.ignition.plist" do |s|
-      s.gsub! "/usr/local/bin/ignition", "/usr/local/bin/ignition-#{version}"
+      s.gsub! "/usr/local/bin/ignition", "/usr/local/bin/ignition-edge-#{version}"
     end
     # Link plist
     prefix.install_symlink "#{libexec}/com.inductiveautomation.ignition.plist" => "#{plist_name}.plist"
@@ -31,7 +31,7 @@ class IgnitionEdgeAT813 < Formula
   end
 
   test do
-    output = shell_output("#{bin}/ignition-#{version} 2>&1", 1)
-    assert_match "#{bin}/ignition-#{version}", output
+    output = shell_output("#{bin}/ignition-edge-#{version} 2>&1", 1)
+    assert_match "#{bin}/ignition-edge-#{version}", output
   end
 end
