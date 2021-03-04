@@ -13,10 +13,12 @@ function update_formulae {
       *-Edge-*)
         name="IgnitionEdgeAT"
         formula_prefix="ignition-edge@"
+        edge=true
         ;;
       *)
         name="IgnitionAT"
         formula_prefix="ignition@"
+        edge=false
         ;;
     esac
 
@@ -25,7 +27,11 @@ function update_formulae {
         template_file="$CURR_DIR/Templates/ignition7.rb.tmpl"
         ;;
       *)
-        template_file="$CURR_DIR/Templates/ignition8.rb.tmpl"
+        if [ "$edge" = true ] ; then
+          template_file="$CURR_DIR/Templates/ignition-edge8.rb.tmpl"
+        else
+          template_file="$CURR_DIR/Templates/ignition8.rb.tmpl"
+        fi
         ;;
     esac
     filename="$formula_prefix$version"
