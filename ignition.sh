@@ -27,7 +27,7 @@ function update_formulae {
         template_file="$CURR_DIR/Templates/ignition7.rb.tmpl"
         ;;
       *)
-        if [ "$edge" = true ] ; then
+        if [ "$edge" = true ]; then
           template_file="$CURR_DIR/Templates/ignition-edge8.rb.tmpl"
         else
           template_file="$CURR_DIR/Templates/ignition8.rb.tmpl"
