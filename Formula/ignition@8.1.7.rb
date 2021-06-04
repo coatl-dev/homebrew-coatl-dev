@@ -1,9 +1,9 @@
-class {formula_name} < Formula
+class IgnitionAT817 < Formula
   desc "Unlimited Platform for SCADA and so much more"
   homepage "https://inductiveautomation.com/"
-  url "https://files.inductiveautomation.com/release/ia/{release}/{formula_url}",
+  url "https://files.inductiveautomation.com/release/ia/8.1.7/20210603-1403/Ignition-osx-8.1.7.zip",
       referer: "https://inductiveautomation.com/"
-  sha256 "{shasum}"
+  sha256 "7da601d03dcdf354ed874617ea7944cc0bb7af35fc2dd3865940529cced13fee"
   license :cannot_represent
 
   bottle :unneeded
