@@ -1,7 +1,7 @@
 class IgnitionEdgeAT817 < Formula
   desc "Unlimited Platform for SCADA and so much more"
   homepage "https://inductiveautomation.com/"
-  url "https://files.inductiveautomation.com/release/ia/20210603-1403/Ignition-Edge-osx-8.1.7.zip",
+  url "https://files.inductiveautomation.com/release/ia/8.1.7/20210603-1403/Ignition-Edge-osx-8.1.7.zip",
       referer: "https://inductiveautomation.com/"
   sha256 "cdca91e6071b910c25fa248aed3c1218455468d30e103f4b7cc4a9111367c795"
   license :cannot_represent
