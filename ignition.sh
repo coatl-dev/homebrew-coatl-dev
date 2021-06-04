@@ -44,6 +44,7 @@ function update_formulae {
       name+="${version//./}"
 
       < "$template_file" sed -E "s/\\{formula_name\\}/$name/g" \
+      | sed -E "s|\\{release\\}|$version|g" \
       | sed -E "s|\\{formula_url\\}|$partial_url|g" \
       | sed -E "s/\\{shasum\\}/$sha256/g" \
       > "$filename.rb" ; \
