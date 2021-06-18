@@ -9,29 +9,15 @@ function update_formulae {
 
   while IFS=, read -r version partial_url sha256
   do
-    case $partial_url in
-      *-Edge-*)
-        name="IgnitionEdgeAT"
-        formula_prefix="ignition-edge@"
-        edge=true
-        ;;
-      *)
-        name="IgnitionAT"
-        formula_prefix="ignition@"
-        edge=false
-        ;;
-    esac
+    name="IgnitionAT"
+    formula_prefix="ignition@"
 
     case $version in
       7.*)
         template_file="$CURR_DIR/Templates/ignition7.rb.tmpl"
         ;;
       *)
-        if [ "$edge" = true ]; then
-          template_file="$CURR_DIR/Templates/ignition-edge8.rb.tmpl"
-        else
-          template_file="$CURR_DIR/Templates/ignition8.rb.tmpl"
-        fi
+        template_file="$CURR_DIR/Templates/ignition8.rb.tmpl"
         ;;
     esac
     filename="$formula_prefix$version"
