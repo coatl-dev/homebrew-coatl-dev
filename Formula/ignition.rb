@@ -1,9 +1,9 @@
 class Ignition < Formula
   desc "Unlimited Platform for SCADA and so much more"
   homepage "https://inductiveautomation.com/"
-  url "https://files.inductiveautomation.com/release/ia/8.1.9/20210806-1733/Ignition-osx-8.1.9.zip",
+  url "https://files.inductiveautomation.com/release/ia/8.1.10/20210908-1153/Ignition-osx-8.1.10.zip",
       referer: "https://inductiveautomation.com/"
-  sha256 "fba0313e309159a47d82cb4c1d78a4a929d0171d88e482e16cf328bb1bb303e7"
+  sha256 "0546dcc3a76c687b2ee2cef48ffff5f12ff8689ac43a7008135da4389c12e8de"
   license :cannot_represent
 
   livecheck do
@@ -29,7 +29,7 @@ class Ignition < Formula
     libexec.install Dir["*"]
 
     # Make files executable
-    %w[gwcmd.sh ignition.sh ignition-gateway].each do |cmd|
+    %w[gwcmd.sh ignition.sh ignition-util.sh ignition-gateway].each do |cmd|
       chmod "u=wrx,go=rx", "#{libexec}/#{cmd}"
     end
 
@@ -96,7 +96,7 @@ class Ignition < Formula
   end
 
   test do
-    output = shell_output("#{bin}/ignition 2>&1", 1)
-    assert_match "#{bin}/ignition", output.lines.first
+    output = shell_output("#{bin}/ignition")
+    assert_match "#{libexec}/ignition.sh", output.lines.first
   end
 end
