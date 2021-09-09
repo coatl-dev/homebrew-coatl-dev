@@ -29,7 +29,7 @@ class Ignition < Formula
     libexec.install Dir["*"]
 
     # Make files executable
-    %w[gwcmd.sh ignition.sh ignition-gateway].each do |cmd|
+    %w[gwcmd.sh ignition.sh ignition-util.sh ignition-gateway].each do |cmd|
       chmod "u=wrx,go=rx", "#{libexec}/#{cmd}"
     end
 
