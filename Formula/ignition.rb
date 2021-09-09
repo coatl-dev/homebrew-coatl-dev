@@ -96,7 +96,7 @@ class Ignition < Formula
   end
 
   test do
-    output = shell_output("#{bin}/ignition 2>&1", 1)
-    assert_match "#{libexec}/ignition", output.lines.first
+    output = shell_output("#{bin}/ignition")
+    assert_match "#{libexec}/ignition.sh", output.lines.first
   end
 end
