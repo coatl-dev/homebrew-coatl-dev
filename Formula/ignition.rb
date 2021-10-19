@@ -12,8 +12,6 @@ class Ignition < Formula
     regex(/"version"\s*:\s*"(\d+(:?\.\d+)*)"/i)
   end
 
-  bottle :unneeded
-
   def install
     # Relocate data
     mv "data", "ignition"
@@ -31,6 +29,11 @@ class Ignition < Formula
     # Make files executable
     %w[gwcmd.sh ignition.sh ignition-util.sh ignition-gateway].each do |cmd|
       chmod "u=wrx,go=rx", "#{libexec}/#{cmd}"
+    end
+
+    # Update com.inductiveautomation.ignition.plist
+    inreplace "#{libexec}/com.inductiveautomation.ignition.plist" do |s|
+      s.gsub! "<string>com.inductiveautomation.ignition</string>", "<string>#{plist_name}</string>"
     end
 
     # Create symlinks

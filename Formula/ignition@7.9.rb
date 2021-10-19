@@ -12,8 +12,6 @@ class IgnitionAT79 < Formula
     regex(/"version"\s*:\s*"(7.9(:?\.\d+)*)"/i)
   end
 
-  bottle :unneeded
-
   depends_on "openjdk@8"
 
   def install
@@ -38,6 +36,7 @@ class IgnitionAT79 < Formula
     # Update com.inductiveautomation.ignition.plist
     inreplace "#{libexec}/com.inductiveautomation.ignition.plist" do |s|
       s.gsub! "/usr/local/bin/ignition", "/usr/local/bin/ignition7.9"
+      s.gsub! "<string>com.inductiveautomation.ignition</string>", "<string>#{plist_name}</string>"
     end
 
     # Create symlinks
