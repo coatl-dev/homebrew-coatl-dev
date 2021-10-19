@@ -12,8 +12,6 @@ class IgnitionAT80 < Formula
     regex(/"version"\s*:\s*"(8.0(:?\.\d+)*)"/i)
   end
 
-  bottle :unneeded
-
   def install
     # Relocate data
     mv "data", "ignition8.0"
@@ -36,6 +34,7 @@ class IgnitionAT80 < Formula
     # Update com.inductiveautomation.ignition.plist
     inreplace "#{libexec}/com.inductiveautomation.ignition.plist" do |s|
       s.gsub! "/usr/local/bin/ignition", "/usr/local/bin/ignition8.0"
+      s.gsub! "<string>com.inductiveautomation.ignition</string>", "<string>#{plist_name}</string>"
     end
 
     # Create symlinks
