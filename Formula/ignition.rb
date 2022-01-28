@@ -1,9 +1,9 @@
 class Ignition < Formula
   desc "Unlimited Platform for SCADA and so much more"
   homepage "https://inductiveautomation.com/"
-  url "https://files.inductiveautomation.com/release/ia/8.1.13/20211221-0852/Ignition-osx-8.1.13.zip",
+  url "https://files.inductiveautomation.com/release/ia/8.1.14/20220127-1144/Ignition-osx-8.1.14.zip",
       referer: "https://inductiveautomation.com/"
-  sha256 "1edf5261daa9a9798737b5a33969f6366c9af5bf2efbcfa8fc71676694abca76"
+  sha256 "3c934d571d2295e41268f4432c2ca9eb437d62d113ae7f2fa5dbcd11c08f611e"
   license :cannot_represent
 
   livecheck do
