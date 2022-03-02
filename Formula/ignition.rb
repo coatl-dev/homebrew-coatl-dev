@@ -3,6 +3,7 @@ class Ignition < Formula
   homepage "https://inductiveautomation.com/"
   url "https://files.inductiveautomation.com/release/ia/8.1.15/20220301-1426/Ignition-macOs-x86-64-8.1.15.zip",
       referer: "https://inductiveautomation.com/"
+  version "8.1.15"
   sha256 "24331d78e843421807040e10455f10efd6bdd4f79dee1d603510d370773fd8a0"
   license :cannot_represent
 
