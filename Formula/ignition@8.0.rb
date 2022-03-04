@@ -12,6 +12,8 @@ class IgnitionAT80 < Formula
     regex(/"version"\s*:\s*"(8.0(:?\.\d+)*)"/i)
   end
 
+  deprecate! date: "2020-11-12", because: :unmaintained
+
   def install
     # Relocate data
     mv "data", "ignition8.0"
