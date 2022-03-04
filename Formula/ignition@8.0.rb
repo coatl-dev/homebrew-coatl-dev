@@ -47,8 +47,9 @@ class IgnitionAT80 < Formula
   end
 
   def post_install
+    # Relocate files
     %w[License.html Notice.txt README.txt].each do |f|
-      libexec.install "#{prefix}/#{f}"
+      libexec.install "#{prefix}/#{f}" if File.exist?("#{prefix}/#{f}")
     end
 
     # Unzip the new runtime
