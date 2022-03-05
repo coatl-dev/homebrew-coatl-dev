@@ -60,7 +60,7 @@ class IgnitionAT80 < Formula
            "-classpath",
            "#{libexec}/lib/core/common/common.jar",
            "com.inductiveautomation.ignition.common.upgrader.Upgrader",
-           "#{libexec}",
+           libexec.to_s,
            "#{libexec}/data",
            "#{libexec}/logs",
            "file=ignition.conf"
