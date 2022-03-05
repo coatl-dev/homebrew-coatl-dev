@@ -51,17 +51,10 @@ class Ignition < Formula
     end
 
     # Unzip the new runtime
-    system "tar", "-C", "#{libexec}/lib/runtime", "-xf", "#{libexec}/lib/runtime/jre-mac.tar.gz"
+    system bin/"ignition", "checkruntimes"
 
     # Update ignition.conf
-    system "#{libexec}/lib/runtime/jre-mac/bin/java",
-           "-classpath",
-           "#{libexec}/lib/core/common/common.jar",
-           "com.inductiveautomation.ignition.common.upgrader.Upgrader",
-           ".",
-           "#{libexec}/data",
-           "#{libexec}/logs",
-           "file=ignition.conf"
+    system bin/"ignition", "runupgrader"
   end
 
   def caveats
