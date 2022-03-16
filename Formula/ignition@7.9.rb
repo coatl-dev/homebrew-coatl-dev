@@ -48,7 +48,7 @@ class IgnitionAT79 < Formula
 
   def post_install
     %w[Notice.txt README.txt].each do |f|
-      libexec.install "#{prefix}/#{f}"
+      libexec.install "#{prefix}/#{f}" if File.exist?("#{prefix}/#{f}")
     end
 
     # Modify data/ignition.conf
