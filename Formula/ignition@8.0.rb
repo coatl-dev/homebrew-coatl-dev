@@ -51,19 +51,6 @@ class IgnitionAT80 < Formula
     %w[License.html Notice.txt README.txt].each do |f|
       libexec.install "#{prefix}/#{f}" if File.exist?("#{prefix}/#{f}")
     end
-
-    # Unzip the new runtime
-    system "tar", "-C", "#{libexec}/lib/runtime", "-xf", "#{libexec}/lib/runtime/jre-mac.tar.gz"
-
-    # Update ignition.conf
-    system "#{libexec}/lib/runtime/jre-mac/bin/java",
-           "-classpath",
-           "#{libexec}/lib/core/common/common.jar",
-           "com.inductiveautomation.ignition.common.upgrader.Upgrader",
-           libexec.to_s,
-           "#{libexec}/data",
-           "#{libexec}/logs",
-           "file=ignition.conf"
   end
 
   def caveats
