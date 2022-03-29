@@ -6,6 +6,7 @@ on:
   pull_request:
 jobs:
   test-bot:
+    if: github.repository == 'coatl-dev/homebrew-coatl-dev'
     strategy:
       matrix:
         os: [macos-latest]
