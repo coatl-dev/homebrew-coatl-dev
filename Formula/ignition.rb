@@ -2,7 +2,7 @@ class Ignition < Formula
   desc "Unlimited Platform for SCADA and so much more"
   homepage "https://inductiveautomation.com/"
   if OS.mac?
-    os = "macOS"
+    os = "macOs"
     sha = "352cae52f8c0b3298cb59d2efef8134cd0d1ab3d2bf613d9644c30dae54d0c80"
   else
     os = "linux"
