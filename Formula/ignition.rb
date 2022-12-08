@@ -1,10 +1,17 @@
 class Ignition < Formula
   desc "Unlimited Platform for SCADA and so much more"
   homepage "https://inductiveautomation.com/"
-  url "https://files.inductiveautomation.com/release/ia/8.1.22/20221101-1006/Ignition-macOs-x86-64-8.1.22.zip",
+  if OS.mac?
+    os = "macOS"
+    sha = "352cae52f8c0b3298cb59d2efef8134cd0d1ab3d2bf613d9644c30dae54d0c80"
+  else
+    os = "linux"
+    sha = "327fee6568ac46c0f4bf513b209113ae0d299bea074c0f621dcc5ff241243f4b"
+  end
+  url "https://files.inductiveautomation.com/release/ia/8.1.22/20221101-1006/Ignition-#{os}-x86-64-8.1.22.zip",
       referer: "https://inductiveautomation.com/"
   version "8.1.22"
-  sha256 "352cae52f8c0b3298cb59d2efef8134cd0d1ab3d2bf613d9644c30dae54d0c80"
+  sha256 sha.to_s
   license :cannot_represent
 
   livecheck do
@@ -32,16 +39,18 @@ class Ignition < Formula
       chmod "u=wrx,go=rx", "#{libexec}/#{cmd}"
     end
 
-    # Update com.inductiveautomation.ignition.plist
-    inreplace "#{libexec}/com.inductiveautomation.ignition.plist" do |s|
-      s.gsub! "<string>com.inductiveautomation.ignition</string>", "<string>#{plist_name}</string>"
-    end
-
     # Create symlinks
     bin.install_symlink "#{libexec}/ignition.sh" => "ignition"
     libexec.install_symlink "#{etc}/ignition" => "data"
     libexec.install_symlink "#{var}/ignition" => "logs"
-    prefix.install_symlink "#{libexec}/com.inductiveautomation.ignition.plist" => "#{plist_name}.plist"
+
+    # Update com.inductiveautomation.ignition.plist only on macOS
+    if OS.mac?
+      inreplace "#{libexec}/com.inductiveautomation.ignition.plist" do |s|
+        s.gsub! "<string>com.inductiveautomation.ignition</string>", "<string>#{plist_name}</string>"
+      end
+      prefix.install_symlink "#{libexec}/com.inductiveautomation.ignition.plist" => "#{plist_name}.plist"
+    end
   end
 
   def post_install
