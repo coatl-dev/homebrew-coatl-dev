@@ -9,7 +9,7 @@ jobs:
     if: github.repository == 'coatl-dev/homebrew-coatl-dev'
     strategy:
       matrix:
-        os: [macos-latest]
+        os: [macos-latest, ubuntu-latest]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Set up Homebrew
