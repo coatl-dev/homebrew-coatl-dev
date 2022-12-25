@@ -13,6 +13,7 @@ class Ignition < Formula
   version "8.1.23"
   sha256 sha.to_s
   license :cannot_represent
+  revision 1
 
   livecheck do
     url "https://inductiveautomation.com/downloads/ignition/"
@@ -48,6 +49,7 @@ class Ignition < Formula
     if OS.mac?
       inreplace "#{libexec}/com.inductiveautomation.ignition.plist" do |s|
         s.gsub! "<string>com.inductiveautomation.ignition</string>", "<string>#{plist_name}</string>"
+        s.gsub! "<string>/usr/local/bin/ignition</string>", "<string>#{bin}/ignition</string>"
       end
       prefix.install_symlink "#{libexec}/com.inductiveautomation.ignition.plist" => "#{plist_name}.plist"
     end
