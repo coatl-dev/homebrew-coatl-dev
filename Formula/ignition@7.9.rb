@@ -1,10 +1,18 @@
 class IgnitionAT79 < Formula
   desc "Unlimited Platform for SCADA and so much more"
   homepage "https://inductiveautomation.com/"
-  url "https://files.inductiveautomation.com/release/ia/build7.9.21/20220726-1323/zip-installers/Ignition-osx-7.9.21.zip",
+  if OS.mac?
+    os = "osx"
+    sha = "1ebbb8f35e4811637166213490702912cead0f78e1356b4508bfc81ee2f1cb8c"
+  else
+    os = "linux-64"
+    sha = "d6ff70b1dbda434d1ec8f3627664240de874b4a39586e9ab01762f9ed096774b"
+  end
+  url "https://files.inductiveautomation.com/release/ia/build7.9.21/20220726-1323/zip-installers/Ignition-#{os}-7.9.21.zip",
       referer: "https://inductiveautomation.com/"
-  sha256 "1ebbb8f35e4811637166213490702912cead0f78e1356b4508bfc81ee2f1cb8c"
+  sha256 sha.to_s
   license :cannot_represent
+  revision 1
 
   livecheck do
     url "https://inductiveautomation.com/downloads/ignition/"
@@ -33,17 +41,19 @@ class IgnitionAT79 < Formula
       chmod "u=wrx,go=rx", "#{libexec}/#{cmd}"
     end
 
-    # Update com.inductiveautomation.ignition.plist
-    inreplace "#{libexec}/com.inductiveautomation.ignition.plist" do |s|
-      s.gsub! "/usr/local/bin/ignition", "/usr/local/bin/ignition7.9"
-      s.gsub! "<string>com.inductiveautomation.ignition</string>", "<string>#{plist_name}</string>"
-    end
-
     # Create symlinks
     bin.install_symlink "#{libexec}/ignition.sh" => "ignition7.9"
     libexec.install_symlink "#{etc}/ignition7.9" => "data"
     libexec.install_symlink "#{var}/ignition7.9" => "logs"
-    prefix.install_symlink "#{libexec}/com.inductiveautomation.ignition.plist" => "#{plist_name}.plist"
+
+    # Update com.inductiveautomation.ignition.plist only on macOS
+    if OS.mac?
+      inreplace "#{libexec}/com.inductiveautomation.ignition.plist" do |s|
+        s.gsub! "<string>com.inductiveautomation.ignition</string>", "<string>#{plist_name}</string>"
+        s.gsub! "<string>/usr/local/bin/ignition</string>", "<string>#{bin}/ignition7.9</string>"
+      end
+      prefix.install_symlink "#{libexec}/com.inductiveautomation.ignition.plist" => "#{plist_name}.plist"
+    end
   end
 
   def post_install
