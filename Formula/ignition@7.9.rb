@@ -10,9 +10,10 @@ class IgnitionAT79 < Formula
   end
   url "https://files.inductiveautomation.com/release/ia/build7.9.21/20220726-1323/zip-installers/Ignition-#{os}-7.9.21.zip",
       referer: "https://inductiveautomation.com/"
+  version "7.9.21"
   sha256 sha.to_s
   license :cannot_represent
-  revision 1
+  revision 2
 
   livecheck do
     url "https://inductiveautomation.com/downloads/ignition/"
