@@ -8,7 +8,7 @@ class Ignition < Formula
     os = "linux"
     sha = "c442609753646fc140c7f12c4ca52d1b199c458d57a9fd3039261b7eaa568187"
   end
-  url "https://files.inductiveautomation.com/release/ia/8.1.25/20230214-0923/Ignition-#{os}-x86-64-8.1.24.zip",
+  url "https://files.inductiveautomation.com/release/ia/8.1.25/20230214-0923/Ignition-#{os}-x86-64-8.1.25.zip",
       referer: "https://inductiveautomation.com/"
   version "8.1.25"
   sha256 sha.to_s
