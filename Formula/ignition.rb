@@ -10,7 +10,7 @@ class Ignition < Formula
   end
   url "https://files.inductiveautomation.com/release/ia/8.1.31/20230810-0829/Ignition-#{os}-x86-64-8.1.31.zip",
       referer: "https://inductiveautomation.com/"
-  version "8.1.30"
+  version "8.1.31"
   sha256 sha.to_s
   license :cannot_represent
 
