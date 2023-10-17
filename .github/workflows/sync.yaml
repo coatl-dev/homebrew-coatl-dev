@@ -11,11 +11,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - run: |
-          ./scripts/core.sh
+      - name: Get Homebrew/core formulae
+        run: |
+          formulae=(
+            "bzip2"
+            "unzip"
+            "xz"
+          )
+          for formula in "${formulae[@]}"; do
+            curl -s -o "Formula/$formula.rb" "https://raw.githubusercontent.com/Homebrew/homebrew-core/HEAD/Formula/${formula:0:1}/$formula.rb"
+          done
 
-      - uses: coatl-dev/actions/simple-git-diff@coatl
-        id: git-diff
+      - id: git-diff
+        run: |
+          git status --porcelain | grep -E '^\s*[A?M]' &>/dev/null && echo "diff=true" || echo "diff=false" >> $GITHUB_OUTPUT
 
       - if: ${{ success() && steps.git-diff.outputs.diff == 'true' }}
         uses: coatl-dev/actions/gpg-import@coatl
