@@ -24,9 +24,10 @@ jobs:
           done
           set +x
 
-      - id: git-diff
-        run: |
-          git status --porcelain | grep -E '^\s*[A?M]' &>/dev/null && echo "diff=true" || echo "diff=false" >> "$GITHUB_OUTPUT"
+      - uses: coatl-dev/actions/simple-git-diff@coatl
+        id: git-diff
+        with:
+          path: Formula
 
       - if: ${{ success() && steps.git-diff.outputs.diff == 'true' }}
         uses: coatl-dev/actions/gpg-import@coatl
