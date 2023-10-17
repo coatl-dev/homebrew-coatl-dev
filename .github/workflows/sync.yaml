@@ -13,6 +13,7 @@ jobs:
 
       - name: Get Homebrew/core formulae
         run: |
+          set -x
           formulae=(
             "bzip2"
             "unzip"
@@ -21,10 +22,11 @@ jobs:
           for formula in "${formulae[@]}"; do
             curl -s -o "Formula/$formula.rb" "https://raw.githubusercontent.com/Homebrew/homebrew-core/HEAD/Formula/${formula:0:1}/$formula.rb"
           done
+          set +x
 
       - id: git-diff
         run: |
-          git status --porcelain | grep -E '^\s*[A?M]' &>/dev/null && echo "diff=true" || echo "diff=false" >> $GITHUB_OUTPUT
+          git status --porcelain | grep -E '^\s*[A?M]' &>/dev/null && echo "diff=true" || echo "diff=false" >> "$GITHUB_OUTPUT"
 
       - if: ${{ success() && steps.git-diff.outputs.diff == 'true' }}
         uses: coatl-dev/actions/gpg-import@coatl
