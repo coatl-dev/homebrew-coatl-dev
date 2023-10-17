@@ -12,14 +12,14 @@ jobs:
       - uses: actions/checkout@v4
 
       - run: |
-          eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+          # Get formulae
           formulae=(
             "bzip2"
             "unzip"
             "xz"
           )
           for formula in "${formulae[@]}"; do
-            brew cat unzip > "Formula/$formula"
+            curl -s -o "Formula/$formula.rb" "https://raw.githubusercontent.com/Homebrew/homebrew-core/HEAD/Formula/${formula:0:1}/$formula.rb"
           done
 
       - uses: coatl-dev/actions/simple-git-diff@coatl
