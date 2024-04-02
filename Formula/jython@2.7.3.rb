@@ -11,13 +11,7 @@ class JythonAT273 < Formula
   end
 
   test do
-    (testpath/"test.py").write <<~EOF
-      from java.util import Calendar
-
-      print Calendar.getInstance().get(Calendar.YEAR)
-
-    EOF
-    output = shell_output("#{bin}/jython #{testpath}/test.py 2>&1")
+    output = shell_output("#{bin}/jython -c \"from java.util import Calendar; print Calendar.getInstance().get(Calendar.YEAR)\"")
     assert_match output.to_s, shell_output("/bin/date +%Y")
   end
 end
