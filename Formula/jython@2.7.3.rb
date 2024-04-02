@@ -5,6 +5,8 @@ class JythonAT273 < Formula
   sha256 "3ffc25c5257d2028b176912a4091fe048c45c7d98218e52d7ce3160a62fdc9fc"
   license "PSF-2.0"
 
+  depends_on "openjdk@11"
+
   def install
     system "java", "-jar", cached_download, "-s", "-t", "standard", "-d", libexec
     (bin/"jython").write_env_script libexec/"bin/jython", Language::Java.overridable_java_home_env
