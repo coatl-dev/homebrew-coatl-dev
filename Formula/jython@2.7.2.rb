@@ -11,7 +11,8 @@ class JythonAT272 < Formula
   end
 
   test do
-    output = shell_output("#{bin}/jython -c \"from java.util import Calendar; print Calendar.getInstance().get(Calendar.YEAR)\"")
-    assert_match output.to_s, shell_output("/bin/date +%Y")
+    jython = shell_output("#{bin}/jython -c \"from java.util import Date; print Date()\"")
+    # This will break in the year 2100. The test will need updating then.
+    assert_match jython.match(/20\d\d/).to_s, shell_output("/bin/date +%Y")
   end
 end
