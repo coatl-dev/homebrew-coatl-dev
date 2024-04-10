@@ -3,14 +3,14 @@ class Ignition < Formula
   homepage "https://inductiveautomation.com/"
   if OS.mac?
     os = "macOs"
-    sha = "b61aa563c728b7da5dbcb8c05d9263102e36365e6198df445d2586f747af3311"
+    sha = "d7093ca53a778478404fe6e6f55ca20489d082c9e4872aac5a07c5d1026bfcb3"
   else
     os = "linux"
-    sha = "d41bed10b5506a5aa50320d016b183299cfcd050735894f3d66ba005d17811ce"
+    sha = "d975c083fed3b309478070f31f53e703d7f15c73fccd3baeee5a87c54af25840"
   end
-  url "https://files.inductiveautomation.com/release/ia/8.1.38/20240305-1347/Ignition-#{os}-x86-64-8.1.38.zip",
+  url "https://files.inductiveautomation.com/release/ia/8.1.39/20240409-1059/Ignition-#{os}-x86-64-8.1.39.zip",
       referer: "https://inductiveautomation.com/"
-  version "8.1.38"
+  version "8.1.39"
   sha256 sha.to_s
   license :cannot_represent
 
