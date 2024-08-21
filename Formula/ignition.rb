@@ -3,14 +3,14 @@ class Ignition < Formula
   homepage "https://inductiveautomation.com/"
   if OS.mac?
     os = "macOs"
-    sha = "72a90c3f5b62523e1a8b536cdc6be88e7ac11c592a443ba4fc744f193628b1cb"
+    sha = "c41ccba4a493794278e18ebf1bd8632d555474417ccdb8127f1c37b5c7948967"
   else
     os = "linux"
-    sha = "5d3a88f8f2e61e614e519772bd9048c8daa96173712a7d09351e5695e21dcc37"
+    sha = "ebda4d54d066de46171d93aca082752fc11dc0fb7536fbcb6ba36f635f26e190"
   end
-  url "https://files.inductiveautomation.com/release/ia/8.1.42/20240618-1102/Ignition-#{os}-x86-64-8.1.42.zip",
+  url "https://files.inductiveautomation.com/release/ia/8.1.43/20240820-1049/Ignition-#{os}-x86-64-8.1.43.zip",
       referer: "https://inductiveautomation.com/"
-  version "8.1.42"
+  version "8.1.43"
   sha256 sha.to_s
   license :cannot_represent
 
@@ -24,12 +24,12 @@ class Ignition < Formula
     # Relocate data
     mv "data", "ignition"
     etc.install "ignition" unless (etc/"ignition").exist?
-    rm_rf "ignition"
+    rm_r "ignition"
 
     # Relocate logs
     mv "logs", "ignition"
     var.install "ignition" unless (var/"ignition").exist?
-    rm_rf "ignition"
+    rm_r "ignition"
 
     # Install
     libexec.install Dir["*"]
