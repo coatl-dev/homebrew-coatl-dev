@@ -24,12 +24,12 @@ class Ignition < Formula
     # Relocate data
     mv "data", "ignition"
     etc.install "ignition" unless (etc/"ignition").exist?
-    rm_rf "ignition"
+    rm_r "ignition"
 
     # Relocate logs
     mv "logs", "ignition"
     var.install "ignition" unless (var/"ignition").exist?
-    rm_rf "ignition"
+    rm_r "ignition"
 
     # Install
     libexec.install Dir["*"]
