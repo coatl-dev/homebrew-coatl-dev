@@ -20,8 +20,6 @@ class Ignition < Formula
     regex(/"version"\s*:\s*"(\d+(:?\.\d+)*)"/i)
   end
 
-  bottle :unneeded
-
   def install
     # Relocate data
     mv "data", "ignition"
