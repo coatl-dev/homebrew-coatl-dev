@@ -83,16 +83,10 @@ class IgnitionAT81 < Formula
     # Check for the typical location
     n +=1 if Dir.exist?("/usr/local/ignition")
     # Check for other Homebrew installations
-    Dir["#{HOMEBREW_PREFIX}/Cellar/ignition@**"].each do
+    Dir["#{HOMEBREW_PREFIX}/Cellar/ignition**"].each do
       n += 1
     end
-    if n == 1
-      s = <<~EOS
-
-        Another installation has been found which may interfere with a Homebrew-built
-        Ignition Gateway from starting up correctly.
-      EOS
-    elsif n > 1
+    if n > 1
       s = <<~EOS
 
         Other installations have been found which may interfere with a Homebrew-built

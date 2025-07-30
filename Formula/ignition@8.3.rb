@@ -37,7 +37,7 @@ class IgnitionAT83 < Formula
     libexec.install Dir["*"]
 
     # Make files executable
-    %w[gwcmd.sh ignition.sh ignition-util.sh ignition-gateway].each do |cmd|
+    %w[gwcmd.sh ignition.sh ignition-secrets-tool.sh ignition-util.sh ignition-gateway].each do |cmd|
       chmod "u=wrx,go=rx", "#{libexec}/#{cmd}"
     end
 
@@ -76,16 +76,10 @@ class IgnitionAT83 < Formula
     # Check for the typical location
     n +=1 if Dir.exist?("/usr/local/ignition")
     # Check for other Homebrew installations
-    Dir["#{HOMEBREW_PREFIX}/Cellar/ignition@**"].each do
+    Dir["#{HOMEBREW_PREFIX}/Cellar/ignition**"].each do
       n += 1
     end
-    if n == 1
-      s = <<~EOS
-
-        Another installation has been found which may interfere with a Homebrew-built
-        Ignition Gateway from starting up correctly.
-      EOS
-    elsif n > 1
+    if n > 1
       s = <<~EOS
 
         Other installations have been found which may interfere with a Homebrew-built
