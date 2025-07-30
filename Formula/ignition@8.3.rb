@@ -24,14 +24,14 @@ class IgnitionAT83 < Formula
 
   def install
     # Relocate data
-    mv "data", "ignition"
-    etc.install "ignition" unless (etc/"ignition").exist?
-    rm_r "ignition"
+    (etc/"ignition/8.3").mkpath unless (etc/"ignition/8.3/data").exist?
+    etc.install "data" => "ignition/8.3/data" unless (etc/"ignition/8.3/data").exist?
+    rm_r "data"
 
     # Relocate logs
-    mv "logs", "ignition"
-    var.install "ignition" unless (var/"ignition").exist?
-    rm_r "ignition"
+    (var/"ignition/8.3/logs").mkpath unless (var/"ignition/8.3/logs").exist?
+    var.install "logs" => "ignition/8.3/logs" unless (var/"ignition/8.3/logs").exist?
+    rm_r "logs"
 
     # Install
     libexec.install Dir["*"]
@@ -43,8 +43,8 @@ class IgnitionAT83 < Formula
 
     # Create symlinks
     bin.install_symlink "#{libexec}/ignition.sh" => "ignition"
-    libexec.install_symlink "#{etc}/ignition" => "data"
-    libexec.install_symlink "#{var}/ignition" => "logs"
+    libexec.install_symlink "#{etc}/ignition/8.3/data" => "data"
+    libexec.install_symlink "#{var}/ignition/8.3/logs" => "logs"
   end
 
   def post_install
@@ -63,8 +63,8 @@ class IgnitionAT83 < Formula
   def caveats
     s = <<~EOS
       The data and logs folders have been symlinked to:
-        data: #{etc}/ignition
-        logs: #{var}/ignition
+        data: #{etc}/ignition/8.3/data
+        logs: #{var}/ignition/8.3/logs
     EOS
     s += find_other_installations
     s

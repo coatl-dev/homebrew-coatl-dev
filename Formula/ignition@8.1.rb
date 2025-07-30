@@ -22,14 +22,14 @@ class IgnitionAT81 < Formula
 
   def install
     # Relocate data
-    mv "data", "ignition"
-    etc.install "ignition" unless (etc/"ignition").exist?
-    rm_r "ignition"
+    (etc/"ignition/8.1").mkpath unless (etc/"ignition/8.1/data").exist?
+    etc.install "data" => "ignition/8.1/data" unless (etc/"ignition/8.1/data").exist?
+    rm_r "data"
 
     # Relocate logs
-    mv "logs", "ignition"
-    var.install "ignition" unless (var/"ignition").exist?
-    rm_r "ignition"
+    (var/"ignition/8.1/logs").mkpath unless (var/"ignition/8.1/logs").exist?
+    var.install "logs" => "ignition/8.1/logs" unless (var/"ignition/8.1/logs").exist?
+    rm_r "logs"
 
     # Install
     libexec.install Dir["*"]
@@ -41,11 +41,11 @@ class IgnitionAT81 < Formula
 
     # Create symlinks
     bin.install_symlink "#{libexec}/ignition.sh" => "ignition"
-    libexec.install_symlink "#{etc}/ignition" => "data"
-    libexec.install_symlink "#{var}/ignition" => "logs"
+    libexec.install_symlink "#{etc}/ignition/8.1/data" => "data"
+    libexec.install_symlink "#{var}/ignition/8.1/logs" => "logs"
 
     # Update com.inductiveautomation.ignition.plist only on macOS
-    if OS.mac? && "#{libexec}/com.inductiveautomation.ignition.plist".exist?
+    if OS.mac?
       inreplace "#{libexec}/com.inductiveautomation.ignition.plist" do |s|
         s.gsub! "<string>com.inductiveautomation.ignition</string>", "<string>#{plist_name}</string>"
         s.gsub! "<string>/usr/local/bin/ignition</string>", "<string>#{bin}/ignition</string>"
@@ -70,8 +70,8 @@ class IgnitionAT81 < Formula
   def caveats
     s = <<~EOS
       The data and logs folders have been symlinked to:
-        data: #{etc}/ignition
-        logs: #{var}/ignition
+        data: #{etc}/ignition/8.1/data
+        logs: #{var}/ignition/8.1/logs
     EOS
     s += find_other_installations
     s
