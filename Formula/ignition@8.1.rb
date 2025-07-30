@@ -45,7 +45,7 @@ class IgnitionAT81 < Formula
     libexec.install_symlink "#{var}/ignition" => "logs"
 
     # Update com.inductiveautomation.ignition.plist only on macOS
-    if OS.mac?
+    if OS.mac? && "#{libexec}/com.inductiveautomation.ignition.plist".exist?
       inreplace "#{libexec}/com.inductiveautomation.ignition.plist" do |s|
         s.gsub! "<string>com.inductiveautomation.ignition</string>", "<string>#{plist_name}</string>"
         s.gsub! "<string>/usr/local/bin/ignition</string>", "<string>#{bin}/ignition</string>"
