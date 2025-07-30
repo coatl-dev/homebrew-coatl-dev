@@ -1,23 +1,25 @@
-class Ignition < Formula
+class IgnitionAT83 < Formula
   desc "Unlimited Platform for SCADA and so much more"
   homepage "https://inductiveautomation.com/"
   if OS.mac?
     os = "macOs"
-    sha = "1cb642ababd4d22b13eade13e7ebf64e93739967a5660687e3d15c1e847d7628"
+    arch = "aarch64"
+    sha = "c7554662513dca7994d6a624a271140c58f830f56b8d33270e367a3cef372237"
   else
     os = "linux"
-    sha = "102fd40e16a2b5643747ecd5f7ef025649390a84abd7a9bb47f0eebf6341c198"
+    arch = "x86"
+    sha = "6a6bf34dced3a6a62434ff1090190f7319b2d0d401b1cd31f1f2e58012479548"
   end
-  url "https://files.inductiveautomation.com/release/ia/8.1.48/20250429-1106/Ignition-#{os}-x86-64-8.1.48.zip",
+  url "https://files.inductiveautomation.com/release/ia/8.3.0-beta1/20250725-1612/Ignition-#{os}-#{arch}-64-8.3.0-beta1.zip",
       referer: "https://inductiveautomation.com/"
-  version "8.1.48"
+  version "8.3.0-beta1"
   sha256 sha.to_s
   license :cannot_represent
 
   livecheck do
     url "https://inductiveautomation.com/downloads/ignition/"
     strategy :page_match
-    regex(/"version"\s*:\s*"(\d+(:?\.\d+)*)"/i)
+    regex(/"version"\s*:\s*"(8.3.(?:\d+-(?:beta|rc)\d+\b)?)"/i)
   end
 
   def install
@@ -43,15 +45,6 @@ class Ignition < Formula
     bin.install_symlink "#{libexec}/ignition.sh" => "ignition"
     libexec.install_symlink "#{etc}/ignition" => "data"
     libexec.install_symlink "#{var}/ignition" => "logs"
-
-    # Update com.inductiveautomation.ignition.plist only on macOS
-    if OS.mac?
-      inreplace "#{libexec}/com.inductiveautomation.ignition.plist" do |s|
-        s.gsub! "<string>com.inductiveautomation.ignition</string>", "<string>#{plist_name}</string>"
-        s.gsub! "<string>/usr/local/bin/ignition</string>", "<string>#{bin}/ignition</string>"
-      end
-      prefix.install_symlink "#{libexec}/com.inductiveautomation.ignition.plist" => "#{plist_name}.plist"
-    end
   end
 
   def post_install
