@@ -9,7 +9,7 @@ jobs:
     if: github.repository == 'coatl-dev/homebrew-coatl-dev'
     strategy:
       matrix:
-        os: [macos-13, ubuntu-latest]
+        os: [macos-13, macos-latest, ubuntu-latest]
       fail-fast: false
     runs-on: ${{ matrix.os }}
     steps:
@@ -35,5 +35,5 @@ jobs:
 
       - run: brew test-bot --only-tap-syntax
 
-      - run: brew test-bot --only-formulae
+      - run: brew test-bot --build-from-source --only-formulae
         if: github.event_name == 'pull_request'
