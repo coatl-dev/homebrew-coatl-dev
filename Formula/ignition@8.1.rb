@@ -1,4 +1,4 @@
-class Ignition < Formula
+class IgnitionAT81 < Formula
   desc "Unlimited Platform for SCADA and so much more"
   homepage "https://inductiveautomation.com/"
   if OS.mac?
@@ -17,19 +17,19 @@ class Ignition < Formula
   livecheck do
     url "https://inductiveautomation.com/downloads/ignition/"
     strategy :page_match
-    regex(/"version"\s*:\s*"(\d+(:?\.\d+)*)"/i)
+    regex(/"version"\s*:\s*"(8.1.(:?\d+)*)"/i)
   end
 
   def install
     # Relocate data
-    mv "data", "ignition"
-    etc.install "ignition" unless (etc/"ignition").exist?
-    rm_r "ignition"
+    (etc/"ignition/8.1").mkpath unless (etc/"ignition/8.1/data").exist?
+    etc.install "data" => "ignition/8.1/data" unless (etc/"ignition/8.1/data").exist?
+    rm_r "data"
 
     # Relocate logs
-    mv "logs", "ignition"
-    var.install "ignition" unless (var/"ignition").exist?
-    rm_r "ignition"
+    (var/"ignition/8.1/logs").mkpath unless (var/"ignition/8.1/logs").exist?
+    var.install "logs" => "ignition/8.1/logs" unless (var/"ignition/8.1/logs").exist?
+    rm_r "logs"
 
     # Install
     libexec.install Dir["*"]
@@ -41,8 +41,8 @@ class Ignition < Formula
 
     # Create symlinks
     bin.install_symlink "#{libexec}/ignition.sh" => "ignition"
-    libexec.install_symlink "#{etc}/ignition" => "data"
-    libexec.install_symlink "#{var}/ignition" => "logs"
+    libexec.install_symlink "#{etc}/ignition/8.1/data" => "data"
+    libexec.install_symlink "#{var}/ignition/8.1/logs" => "logs"
 
     # Update com.inductiveautomation.ignition.plist only on macOS
     if OS.mac?
@@ -70,8 +70,8 @@ class Ignition < Formula
   def caveats
     s = <<~EOS
       The data and logs folders have been symlinked to:
-        data: #{etc}/ignition
-        logs: #{var}/ignition
+        data: #{etc}/ignition/8.1/data
+        logs: #{var}/ignition/8.1/logs
     EOS
     s += find_other_installations
     s
@@ -83,16 +83,10 @@ class Ignition < Formula
     # Check for the typical location
     n +=1 if Dir.exist?("/usr/local/ignition")
     # Check for other Homebrew installations
-    Dir["#{HOMEBREW_PREFIX}/Cellar/ignition@**"].each do
+    Dir["#{HOMEBREW_PREFIX}/Cellar/ignition**"].each do
       n += 1
     end
-    if n == 1
-      s = <<~EOS
-
-        Another installation has been found which may interfere with a Homebrew-built
-        Ignition Gateway from starting up correctly.
-      EOS
-    elsif n > 1
+    if n > 1
       s = <<~EOS
 
         Other installations have been found which may interfere with a Homebrew-built
