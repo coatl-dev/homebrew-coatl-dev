@@ -10,6 +10,8 @@
 
 Or `brew tap coatl-dev/coatl-dev` and then `brew install <formula>`.
 
+Here you will find the full catalog of formualae: <https://formulae.coatl.dev/formula/>
+
 ## How do I uninstall these formulae?
 
 `brew uninstall coatl-dev/coatl-dev/<formula>`
