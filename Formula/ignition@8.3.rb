@@ -3,16 +3,16 @@ class IgnitionAT83 < Formula
   homepage "https://inductiveautomation.com/"
   if OS.mac?
     os = "macOs"
-    arch = "aarch64"
-    sha = "c7554662513dca7994d6a624a271140c58f830f56b8d33270e367a3cef372237"
+    arch = "aarch64-64"
+    sha = "d97f8f888d94cc8a6768efa4fea56849581a6af6c550b6308dd6c30984361373"
   else
     os = "linux"
-    arch = "x86"
-    sha = "6a6bf34dced3a6a62434ff1090190f7319b2d0d401b1cd31f1f2e58012479548"
+    arch = "x86-64"
+    sha = "26d494aee7204b4671deb003def6551aec9e2a0fc523695e5b51a024365a3840"
   end
-  url "https://files.inductiveautomation.com/release/ia/8.3.0-beta1/20250725-1612/Ignition-#{os}-#{arch}-64-8.3.0-beta1.zip",
+  url "https://files.inductiveautomation.com/release/ia/8.3.0-beta2/20250804-0931/Ignition-#{os}-#{arch}-8.3.0-beta2.zip",
       referer: "https://inductiveautomation.com/"
-  version "8.3.0-beta1"
+  version "8.3.0-beta2"
   sha256 sha.to_s
   license :cannot_represent
 
