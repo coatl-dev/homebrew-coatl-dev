@@ -1,15 +1,16 @@
-name: brew test-bot
+name: test-ignition@8.3
 on:
-  push:
+  pull_request:
     branches:
       - coatl
-  pull_request:
+    paths:
+      - Formula/ignition@8.1.rb
 jobs:
   test-bot:
     if: github.repository == 'coatl-dev/homebrew-coatl-dev'
     strategy:
       matrix:
-        os: [macos-13, macos-latest, ubuntu-latest]
+        os: [macos-13, ubuntu-latest]
       fail-fast: false
     runs-on: ${{ matrix.os }}
     steps:
@@ -22,18 +23,11 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ${{ steps.set-up-homebrew.outputs.gems-path }}
-          key: ${{ matrix.os }}-rubygems-${{ steps.set-up-homebrew.outputs.gems-hash }}
-          restore-keys: ${{ matrix.os }}-rubygems-
+          key: ${{ runner.os }}-${{ runner.arch }}-rubygems-${{ steps.set-up-homebrew.outputs.gems-hash }}
+          restore-keys: ${{ runner.os }}-${{ runner.arch }}-rubygems-
 
       - name: Install Homebrew Bundler RubyGems
         if: steps.cache.outputs.cache-hit != 'true'
         run: brew install-bundler-gems
 
-      - run: brew test-bot --only-cleanup-before
-
-      - run: brew test-bot --only-setup
-
-      - run: brew test-bot --only-tap-syntax
-
       - run: brew test-bot --only-formulae
-        if: github.event_name == 'pull_request'
