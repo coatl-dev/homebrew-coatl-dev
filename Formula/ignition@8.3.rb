@@ -15,6 +15,7 @@ class IgnitionAT83 < Formula
   version "8.3.0-beta4"
   sha256 sha.to_s
   license :cannot_represent
+  revision 1
 
   livecheck do
     url "https://inductiveautomation.com/downloads/ignition/"
@@ -24,9 +25,13 @@ class IgnitionAT83 < Formula
 
   def install
     # Relocate data
-    (etc/"ignition/8.3").mkpath unless (etc/"ignition/8.3/data").exist?
-    etc.install "data" => "ignition/8.3/data" unless (etc/"ignition/8.3/data").exist?
+    etc_dir = etc/"ignition/8.3"
+    data_dir = etc/"ignition/8.3/data"
+    modules_json = etc/"ignition/8.3/data/modules.json"
+    etc_dir.mkpath unless data_dir.exist?
+    etc.install "data" => data_dir unless data_dir.exist?
     rm_r "data"
+    rm modules_json if data_dir.exist? && modules_json.exist?
 
     # Relocate logs
     (var/"ignition/8.3/logs").mkpath unless (var/"ignition/8.3/logs").exist?
