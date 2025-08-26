@@ -12,7 +12,6 @@ class IgnitionAT83 < Formula
   end
   url "https://files.inductiveautomation.com/release/ia/8.3.0-rc1/20250826-1035/Ignition-#{os}-#{arch}-8.3.0-rc1.zip",
       referer: "https://inductiveautomation.com/"
-  version "8.3.0-rc1"
   sha256 sha.to_s
   license :cannot_represent
   revision 1
