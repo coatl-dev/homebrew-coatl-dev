@@ -14,7 +14,6 @@ class IgnitionAT83 < Formula
       referer: "https://inductiveautomation.com/"
   sha256 sha.to_s
   license :cannot_represent
-  revision 1
 
   livecheck do
     url "https://inductiveautomation.com/downloads/ignition/"
