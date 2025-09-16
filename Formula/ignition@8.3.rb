@@ -4,21 +4,22 @@ class IgnitionAT83 < Formula
   if OS.mac?
     os = "macOs"
     arch = "aarch64-64"
-    sha = "e070237937bd49218d666d79560e350c8e689c273096fd663dc810ff6e462d0a"
+    sha = "18a9a83bc7a70b677c61a1f3579bbaeaf3b15c1ba4aafa402465787f3ecf1819"
   else
     os = "linux"
     arch = "x86-64"
-    sha = "7c44b523f5a142d8594b53f9ccddf2c90df0ff2fbe630c4edb34c7357724155b"
+    sha = "aef041d9feb7d2a9132e408dfe9140b8d65f18c79a5ce05d88f4b529606f441f"
   end
-  url "https://files.inductiveautomation.com/release/ia/8.3.0-rc1/20250826-1035/Ignition-#{os}-#{arch}-8.3.0-rc1.zip",
+  url "https://files.inductiveautomation.com/release/ia/8.3.0/20250915-1119/Ignition-#{os}-#{arch}-8.3.0.zip",
       referer: "https://inductiveautomation.com/"
+  version "8.3.0"
   sha256 sha.to_s
   license :cannot_represent
 
   livecheck do
     url "https://inductiveautomation.com/downloads/ignition/"
     strategy :page_match
-    regex(/"version"\s*:\s*"(8.3.(?:\d+-(?:beta|rc)\d+\b)?)"/i)
+    regex(/"version"\s*:\s*"(8.3.(:?\d+)*)"/i)
   end
 
   def install
