@@ -10,7 +10,7 @@ class IgnitionAT83 < Formula
     arch = "x86-64"
     sha = "aef041d9feb7d2a9132e408dfe9140b8d65f18c79a5ce05d88f4b529606f441f"
   end
-  url "https://files.inductiveautomation.com/release/ia/8.3.0/20250915-1119/Ignition-linux-#{os}-#{arch}-8.3.0.zip",
+  url "https://files.inductiveautomation.com/release/ia/8.3.0/20250915-1119/Ignition-#{os}-#{arch}-8.3.0.zip",
       referer: "https://inductiveautomation.com/"
   version "8.3.0"
   sha256 sha.to_s
