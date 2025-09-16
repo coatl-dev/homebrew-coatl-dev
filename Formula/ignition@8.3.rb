@@ -18,7 +18,7 @@ class IgnitionAT83 < Formula
   livecheck do
     url "https://inductiveautomation.com/downloads/ignition/"
     strategy :page_match
-    regex(/"version"\s*:\s*"(8.3.(?:\d+-(?:beta|rc)\d+\b)?)"/i)
+    regex(/"version"\s*:\s*"(8.3.(:?\d+)*)"/i)
   end
 
   def install
