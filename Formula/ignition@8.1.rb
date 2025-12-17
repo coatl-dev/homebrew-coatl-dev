@@ -3,10 +3,10 @@ class IgnitionAT81 < Formula
   homepage "https://inductiveautomation.com/"
   if OS.mac?
     os = "macOs"
-    sha = "c6cd0b97c245f06f3b287a4b92d72df7c36aafe764c43ca81c6362c910f76e99"
+    sha = "890f78be27ba87ad7f5c345084b47c2b4c50f1fb25bdd9cefe3669362a8f09f9"
   else
     os = "linux"
-    sha = "3329eb0c8b7e4d711fcfb58045b6fccaefa0af3fbbf74ef2c352ee8e0d3b5537"
+    sha = "79524eef03fb18c1b79c23112f05544be94a80dad957ac3f65a3979117b11f2f"
   end
   url "https://files.inductiveautomation.com/release/ia/8.1.51/20251216-0811/Ignition-#{os}-x86-64-8.1.51.zip",
       referer: "https://inductiveautomation.com/"
