@@ -20,8 +20,8 @@ class IgnitionAT81 < Formula
     regex(/"version"\s*:\s*"(8.1.(:?\d+)*)"/i)
   end
 
-  conflicts_with "ignition@8.3",
-    because: "ignition@8.3 installs conflicting executables"
+  conflicts_with "ignition", "ignition@8.3",
+    because: "ignition@8.3 and its alias, ignition, install conflicting executables"
 
   def install
     # Relocate data
