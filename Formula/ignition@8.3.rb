@@ -22,6 +22,9 @@ class IgnitionAT83 < Formula
     regex(/"version"\s*:\s*"(8.3.(:?\d+)*)"/i)
   end
 
+  conflicts_with "ignition@8.3",
+    because: "ignition@8.1 installs conflicting executables"
+
   def install
     # Relocate data
     etc_dir = etc/"ignition/8.3"
