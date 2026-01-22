@@ -32,10 +32,6 @@ class IgnitionAT81 < Formula
       mv "data", data_dir
     end
 
-    # Remove modules.json if data directory already existed
-    modules_json = data_dir/"modules.json"
-    rm modules_json if modules_json.exist?
-
     # Relocate logs
     logs_dir = var/"ignition/8.1/logs"
     logs_dir.mkpath
@@ -72,10 +68,6 @@ class IgnitionAT81 < Formula
 
     # Update ignition.conf
     system bin/"ignition", "runupgrader"
-  end
-
-  def plist_name
-    "homebrew.mxcl.ignition@8.1"
   end
 
   def caveats
