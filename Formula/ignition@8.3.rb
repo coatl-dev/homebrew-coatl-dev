@@ -24,31 +24,42 @@ class IgnitionAT83 < Formula
 
   def install
     # Relocate data
-    etc_dir = etc/"ignition/8.3"
     data_dir = etc/"ignition/8.3/data"
-    modules_json = etc/"ignition/8.3/data/modules.json"
-    etc_dir.mkpath unless data_dir.exist?
-    etc.install "data" => data_dir unless data_dir.exist?
-    rm_r "data"
-    rm modules_json if data_dir.exist? && modules_json.exist?
+    # Create parent directory if needed
+    data_dir.parent.mkpath
+
+    if data_dir.exist?
+      rm_r "data"
+    else
+      mv "data", data_dir
+    end
+
+    # Remove modules.json if data directory already existed
+    modules_json = data_dir/"modules.json"
+    rm modules_json if modules_json.exist?
 
     # Relocate logs
-    (var/"ignition/8.3/logs").mkpath unless (var/"ignition/8.3/logs").exist?
-    var.install "logs" => "ignition/8.3/logs" unless (var/"ignition/8.3/logs").exist?
-    rm_r "logs"
+    logs_dir = var/"ignition/8.3/logs"
+    logs_dir.mkpath
 
-    # Install
+    if logs_dir.exist?
+      rm_r "logs"
+    else
+      mv "logs", logs_dir
+    end
+
+    # Install everything else
     libexec.install Dir["*"]
 
     # Make files executable
     %w[gwcmd.sh ignition.sh ignition-secrets-tool.sh ignition-util.sh ignition-gateway].each do |cmd|
-      chmod "u=wrx,go=rx", "#{libexec}/#{cmd}"
+      chmod "u=wrx,go=rx", libexec/cmd
     end
 
     # Create symlinks
-    bin.install_symlink "#{libexec}/ignition.sh" => "ignition"
-    libexec.install_symlink "#{etc}/ignition/8.3/data" => "data"
-    libexec.install_symlink "#{var}/ignition/8.3/logs" => "logs"
+    bin.install_symlink libexec/"ignition.sh" => "ignition"
+    libexec.install_symlink data_dir => "data"
+    libexec.install_symlink logs_dir => "logs"
   end
 
   def post_install
