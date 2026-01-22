@@ -23,25 +23,30 @@ class IgnitionAT81 < Formula
   def install
     # Relocate data
     data_dir = etc/"ignition/8.1/data"
+    # Create parent directory if needed
     data_dir.parent.mkpath
 
-    unless data_dir.exist?
-      mv "data", data_dir
-    else
+    if data_dir.exist?
       rm_r "data"
+    else
+      mv "data", data_dir
     end
+
+    # Remove modules.json if data directory already existed
+    modules_json = data_dir/"modules.json"
+    rm modules_json if modules_json.exist?
 
     # Relocate logs
     logs_dir = var/"ignition/8.1/logs"
     logs_dir.mkpath
 
-    unless logs_dir.exist?
-      mv "logs", logs_dir
-    else
+    if logs_dir.exist?
       rm_r "logs"
+    else
+      mv "logs", logs_dir
     end
 
-    # Install
+    # Install everything else
     libexec.install Dir["*"]
 
     # Make files executable
