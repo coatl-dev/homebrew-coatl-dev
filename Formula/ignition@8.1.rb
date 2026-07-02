@@ -8,9 +8,9 @@ class IgnitionAT81 < Formula
     os = "linux"
     sha = "b96513ae01cb0d43f38f054ec4f92b199c3bd945f5be2bf0814f524cbe788332"
   end
-  url "https://files.inductiveautomation.com/release/ia/8.1.53/20260324-1532/Ignition-#{os}-x86-64-8.1.53.zip",
+  url "https://files.inductiveautomation.com/release/ia/8.1.54/20260630-1137/Ignition-#{os}-x86-64-8.1.54.zip",
       referer: "https://inductiveautomation.com/"
-  version "8.1.53"
+  version "8.1.54"
   sha256 sha.to_s
   license :cannot_represent
 
