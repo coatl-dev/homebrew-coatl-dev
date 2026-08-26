@@ -4,7 +4,7 @@ class IgnitionAT83 < Formula
   if OS.mac?
     os = "macOs"
     arch = "aarch64-64"
-    sha = "42645c064dc5f102470159976445dd5c5273ca8e8f15db0bdd3a8b94dd854934"
+    sha = "0424381f9f0f1d2ede6ea82bef88da67ba9067338a5178c2ae32f5aa8029e52d"
   else
     os = "linux"
     arch = "x86-64"
