@@ -62,16 +62,13 @@ class IgnitionAT83 < Formula
     libexec.install_symlink logs_dir => "logs"
   end
 
-  def post_install_steps
-    # Relocate files
+  post_install_steps do
     %w[License.html Notice.txt README.txt].each do |f|
-      libexec.install "#{prefix}/#{f}" if File.exist?("#{prefix}/#{f}")
+      source = prefix/f
+      libexec.install source if source.exist?
     end
 
-    # Unzip the new runtime
     system bin/"ignition", "checkruntimes"
-
-    # Update ignition.conf
     system bin/"ignition", "runupgrader"
   end
 
