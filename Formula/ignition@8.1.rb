@@ -3,14 +3,14 @@ class IgnitionAT81 < Formula
   homepage "https://inductiveautomation.com/"
   if OS.mac?
     os = "macOs"
-    sha = "72f5058395e98f105c916e48e9164f79d9a13fb408bc5bf67a86ff2b4838bde1"
+    sha = "b3ae32095d3c294c147d839fed8bf6782f7438fbbbb4ff3154574892bfe615ae"
   else
     os = "linux"
-    sha = "bb33dd6a607316c76644e552550d07117d877b40a45273c421f3fc7f6ebcec2d"
+    sha = "7d54d99cac61b4f7f8f2d14e9b3705824d46a6a6b195d3c0530a3cd4ec46eca2"
   end
-  url "https://releases.inductiveautomation.com/release/8.1.55/20260915-0848/Ignition-#{os}-x86-64-8.1.55.zip",
+  url "https://files.inductiveautomation.com/release/ia/8.1.54/20260630-1137/Ignition-#{os}-x86-64-8.1.54.zip",
       referer: "https://inductiveautomation.com/"
-  version "8.1.55"
+  version "8.1.54"
   sha256 sha.to_s
   license :cannot_represent
 
@@ -57,13 +57,22 @@ class IgnitionAT81 < Formula
   end
 
   post_install_steps do
-    %w[License.html Notice.txt README.txt].each do |f|
-      source = prefix/f
-      libexec.install source if source.exist?
+    # Relocate files
+    if_path_exists "License.html", base: :prefix do
+      move "License.html", "libexec/License.html"
+    end
+    if_path_exists "Notice.txt", base: :prefix do
+      move "Notice.txt", "libexec/Notice.txt"
+    end
+    if_path_exists "README.txt", base: :prefix do
+      move "README.txt", "libexec/README.txt"
     end
 
-    system bin/"ignition", "checkruntimes"
-    system bin/"ignition", "runupgrader"
+    # Unzip the new runtime
+    run "ignition", args: ["checkruntimes"], base: :bin
+
+    # Update ignition.conf
+    run "ignition", args: ["runupgrader"], base: :bin
   end
 
   def caveats

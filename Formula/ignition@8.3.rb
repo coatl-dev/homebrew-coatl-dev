@@ -63,13 +63,22 @@ class IgnitionAT83 < Formula
   end
 
   post_install_steps do
-    %w[License.html Notice.txt README.txt].each do |f|
-      source = prefix/f
-      libexec.install source if source.exist?
+    # Relocate files
+    if_path_exists "License.html", base: :prefix do
+      move "License.html", "libexec/License.html"
+    end
+    if_path_exists "Notice.txt", base: :prefix do
+      move "Notice.txt", "libexec/Notice.txt"
+    end
+    if_path_exists "README.txt", base: :prefix do
+      move "README.txt", "libexec/README.txt"
     end
 
-    system bin/"ignition", "checkruntimes"
-    system bin/"ignition", "runupgrader"
+    # Unzip the new runtime
+    run "ignition", args: ["checkruntimes"], base: :bin
+
+    # Update ignition.conf
+    run "ignition", args: ["runupgrader"], base: :bin
   end
 
   def caveats
