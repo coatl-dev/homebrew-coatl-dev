@@ -56,7 +56,7 @@ class IgnitionAT81 < Formula
     libexec.install_symlink logs_dir => "logs"
   end
 
-  def post_install
+  def post_install_steps
     # Relocate files
     %w[License.html Notice.txt README.txt].each do |f|
       source = prefix/f
