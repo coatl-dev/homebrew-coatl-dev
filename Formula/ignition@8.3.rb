@@ -8,7 +8,7 @@ class IgnitionAT83 < Formula
   else
     os = "linux"
     arch = "x86-64"
-    sha = "efcfcc6227f9fa31a46a1d68e0c9320638b41758efea73d937e9c94d23072e74"
+    sha = "1ee34e1e82acc696b4382ecabb5b723a90d898a8fe0c7f37737567e89c94fc81"
   end
   url "https://releases.inductiveautomation.com/release/8.3.10/20261006-1109/Ignition-#{os}-#{arch}-8.3.10.zip",
       referer: "https://inductiveautomation.com/"
