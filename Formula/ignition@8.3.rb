@@ -87,26 +87,18 @@ class IgnitionAT83 < Formula
         data: #{etc}/ignition/8.3/data
         logs: #{var}/ignition/8.3/logs
     EOS
-    s += find_other_installations
-    s
-  end
 
-  def find_other_installations
     n = 0
-    s = ""
     # Check for the typical location
-    n +=1 if Dir.exist?("/usr/local/ignition")
+    n += 1 if Dir.exist?("/usr/local/ignition")
     # Check for other Homebrew installations
-    Dir["#{HOMEBREW_PREFIX}/Cellar/ignition**"].each do
-      n += 1
-    end
-    if n > 1
-      s = <<~EOS
+    n += Dir["#{HOMEBREW_PREFIX}/Cellar/ignition**"].size
 
-        Other installations have been found which may interfere with a Homebrew-built
-        Ignition Gateway from starting up correctly.
-      EOS
-    end
+    s += <<~EOS if n > 1
+
+      Other installations have been found which may interfere with a Homebrew-built
+      Ignition Gateway from starting up correctly.
+    EOS
     s
   end
 
