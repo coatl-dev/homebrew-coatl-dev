@@ -4,7 +4,7 @@ class IgnitionAT81 < Formula
   os, sha = if OS.mac?
     ["macOs", "a079ae7cbc81551a0a5dca99aaf92e6c7e9d006ef9e0f33cc7dbf3922e589807"]
   else
-    ["linux", "bda8e213fecf1cdd1392fd7fe28c173df29da6b2d4f5e42dbs4c6e48074238a6244"]
+    ["linux", "bda8e213fecf1cdd1392fd7fe28c173df29da6b2d4f5e42db3e48074238a6244"]
   end
   url "https://releases.inductiveautomation.com/release/8.1.56/20261125-1142/Ignition-#{os}-x86-64-8.1.56.zip",
       referer: "https://inductiveautomation.com/"
