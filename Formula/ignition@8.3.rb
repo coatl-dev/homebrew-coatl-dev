@@ -1,19 +1,15 @@
 class IgnitionAT83 < Formula
   desc "Unlimited Platform for SCADA and so much more"
   homepage "https://inductiveautomation.com/"
-  if OS.mac?
-    os = "macOs"
-    arch = "aarch64-64"
-    sha = "a4bf3e4607b7cb147f2249ce0793048cad22ff563517194522088f8eae2bbc00"
+  os, arch, sha = if OS.mac?
+    ["macOs", "aarch64-64", "a4bf3e4607b7cb147f2249ce0793048cad22ff563517194522088f8eae2bbc00"]
   else
-    os = "linux"
-    arch = "x86-64"
-    sha = "1ee34e1e82acc696b4382ecabb5b723a90d898a8fe0c7f37737567e89c94fc81"
+    ["linux", "x86-64", "1ee34e1e82acc696b4382ecabb5b723a90d898a8fe0c7f37737567e89c94fc81"]
   end
   url "https://releases.inductiveautomation.com/release/8.3.10/20261006-1109/Ignition-#{os}-#{arch}-8.3.10.zip",
       referer: "https://inductiveautomation.com/"
   version "8.3.10"
-  sha256 sha.to_s
+  sha256 sha
   license :cannot_represent
 
   livecheck do
